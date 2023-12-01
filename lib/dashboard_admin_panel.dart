@@ -1,3 +1,4 @@
+import 'package:admin_panel/utils/appcolor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -50,14 +51,11 @@ class _DashBoardAdminPanelScreenState extends State<DashBoardAdminPanelScreen> {
      var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("DashBoard Admin Panel"),
-        ),
         body: Row(
           children: [
             Container(
               decoration: BoxDecoration(
-                border: Border(right: BorderSide(color: Colors.grey))
+                border: Border(right: BorderSide(color: AppColor.bordercolor))
               ),
               width: width*0.2,
               child: DashBoardAdminPanelLeft((index) {

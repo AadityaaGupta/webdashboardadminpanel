@@ -1,3 +1,4 @@
+import 'package:admin_panel/utils/appcolor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,12 @@ class Users {
 }
 
 List<Users> UsersList = [
-  Users('Andrew', 'Active', '+790000101000', 'Devloper', 'Software Devlopment',
-      '2 days Ago', false),
-  Users('Bojangles', 'Active', '+790000101000', 'Devloper', 'Software Devlopment',
-      '2 days Ago', false),
+  Users('User', 'Status', 'Phone Number', 'Position', 'Department',
+      'Activity', false),
+  Users('Andrew Bojangles ', 'Active', '+790000101000', 'Devloper',
+      'Software Devlopment', '2 days Ago', false),
+  Users('Bojangles', 'Active', '+790000101000', 'Devloper',
+      'Software Devlopment', '2 days Ago', false),
   Users('Harsh', 'Active', '+790000101000', 'Devloper', 'Software Devlopment',
       '2 days Ago', false),
   Users('Aaditya', 'Active', '+790000101000', 'Devloper', 'Software Devlopment',
@@ -40,6 +43,8 @@ class _UsersScreenState extends State<UsersScreen> {
   String selected = "";
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.fromLTRB(8, 0, 8, 0),
       child: SafeArea(
@@ -51,13 +56,13 @@ class _UsersScreenState extends State<UsersScreen> {
             decoration: InputDecoration(
                 hintText: 'search',
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black))),
+                    borderSide: BorderSide(color: AppColor.black))),
           ),
         ),
         Container(
           margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
+            border: Border.all(color: AppColor.bordercolor),
           ),
           width: 80,
           height: 25,
@@ -72,52 +77,16 @@ class _UsersScreenState extends State<UsersScreen> {
                 SizedBox(
                   width: 5,
                 ),
-                Text('Filter', style: TextStyle(color: Colors.black)),
+                Text('Filter', style: TextStyle(color: AppColor.black)),
               ],
             ),
           ),
         ),
         SizedBox(
-          height: 10,
-        ),
-        Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: const Color.fromARGB(255, 218, 213, 213)))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(''),
-              Text(
-                "User",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                "Status",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                "Phone Number",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                "Position",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                "Department",
-                style: TextStyle(color: Colors.black),
-              ),
-                Text(
-                "Activity",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(''),
-            ],
-          ),
+          height: 20,
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 230,
+          height: height/1.5,
           child: ListView.builder(
               itemCount: UsersList.length,
               itemBuilder: (context, index) {
@@ -125,33 +94,62 @@ class _UsersScreenState extends State<UsersScreen> {
                     child: SizedBox(
                   child: Container(
                       child: Expanded(
-                    child: CheckboxListTile(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(UsersList[index].user.toString()),
-                          Text(UsersList[index].status.toString()),
-                          Text(UsersList[index].phonenumber.toString()),
-                          Text(UsersList[index].position.toString()),
-                          Text(UsersList[index].department.toString()),
-                          Text(UsersList[index].activity.toString()),
-                          Icon(Icons.more)
-                        ],
-                      ),
-                      value: UsersList[index].valuee,
-                      onChanged: (value) {
-                        setState(() {
-                          for (var element in UsersList) {
-                            element.valuee = false;
-                          }
-                          UsersList[index].valuee = value;
-                          selected =
-                              "${UsersList[index].user}, ${UsersList[index].valuee}";
-                        });
-                      },
-                      controlAffinity: ListTileControlAffinity.leading,
-                    ),
-                  )),
+                        child: CheckboxListTile(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                   width: width * 0.1,
+                                  child: Text(UsersList[index].user.toString()),
+                                ),
+                              ),
+                              Expanded(
+                                  child: Container(
+                                     width: width * 0.1,
+                                      child: Text(
+                                          UsersList[index].status.toString()))),
+                              Expanded(
+                                  child: Container(
+                                     width: width * 0.1,
+                                      child: Text(UsersList[index]
+                                          .phonenumber
+                                          .toString()))),
+                              Expanded(
+                                  child: Container(
+                                     width: width * 0.1,
+                                      child: Text(UsersList[index]
+                                          .position
+                                          .toString()))),
+                              Expanded(
+                                  child: Container(
+                                      child: Text(UsersList[index]
+                                          .department
+                                          .toString()))),
+                              Expanded(
+                                  child: Container(
+                                     width: width * 0.1,
+                                      child: Text(UsersList[index]
+                                          .activity
+                                          .toString()))),
+                               Icon(Icons.more_vert_outlined),
+                            ],
+                          ),
+                          value: UsersList[index].valuee,
+                          onChanged: (value) {
+                            setState(() {
+                              for (var element in UsersList) {
+                                element.valuee = false;
+                              }
+                              UsersList[index].valuee = value;
+                              selected =
+                                  "${UsersList[index].user}, ${UsersList[index].valuee}";
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
+                        ),
+                      )),
                 ));
               }),
         ),
@@ -159,3 +157,53 @@ class _UsersScreenState extends State<UsersScreen> {
     );
   }
 }
+
+
+  //  Container(
+  //         padding: EdgeInsets.all(20),
+  //         decoration: BoxDecoration(
+  //             border: Border(
+  //                 bottom: BorderSide(
+  //                     color: const Color.fromARGB(255, 218, 213, 213)))),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+           
+  //             Expanded(child: Container( width: width*.1,
+  //               child: Text(
+  //               "User",
+  //               style: TextStyle(color: Colors.black),
+  //             ))
+              
+  //             ),
+  //              Expanded(child: Container( width: width*.1,
+  //               child: Text(
+  //               "Status",
+  //               style: TextStyle(color: Colors.black),
+  //             ))),
+  //              Expanded(child: Container( width: width*.1,
+  //               child: Text(
+  //               "Phone Number",
+  //               style: TextStyle(color: Colors.black))),
+  //             ),
+  //              Expanded(child: Container( width: width*.1,
+  //               child: Text(
+  //               "Position",
+  //               style: TextStyle(color: Colors.black))),
+  //             ),
+  //              Expanded(child: Container(
+  //                width: width*.1,
+  //               child: Text(
+  //               "Department",
+  //               style: TextStyle(color: Colors.black))),
+  //             ),
+  //              Expanded(child: Container(
+  //               width: width*.1,
+  //               child: Text(
+  //               "Activity",
+  //               style: TextStyle(color: Colors.black))),
+  //             ),
+  //           ],
+  //         ),
+  //       ),

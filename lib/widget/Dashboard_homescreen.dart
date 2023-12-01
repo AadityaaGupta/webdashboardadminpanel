@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/appcolor.dart';
+
 
 class MainHomeScreen extends StatefulWidget{
   @override
@@ -13,7 +15,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
   return Container(
       height: 500,
-      child: Text('Home Screen',style: TextStyle(color: Colors.black),),
+      child: Text('Home Screen',style: TextStyle(color: AppColor.black),),
     );
   }
 }
