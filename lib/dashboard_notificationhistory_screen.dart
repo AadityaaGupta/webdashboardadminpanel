@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 class NotificationHistoryScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
    return Container(
      child: Container(
-          height: 500,
+          width: width*0.8,
+              height: height,
           child: Text('Notification History',style: TextStyle(color: Colors.black),),
         ),
    );

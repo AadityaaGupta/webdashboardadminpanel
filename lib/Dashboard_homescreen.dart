@@ -11,9 +11,12 @@ class MainHomeScreen extends StatefulWidget{
 class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
   return Container(
-      height: 500,
-      color: Colors.amber,
+   
+      width: width*0.8,
+              height: height,
       child: Text('Home Screen',style: TextStyle(color: Colors.black),),
     );
   }

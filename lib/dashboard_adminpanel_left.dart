@@ -27,6 +27,8 @@ class _DashBoardAdminPanelLeftState extends State<DashBoardAdminPanelLeft> {
   int SelectIndex = 0;
   @override
   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Expanded(
       child: ListView.builder(
           scrollDirection: Axis.vertical,

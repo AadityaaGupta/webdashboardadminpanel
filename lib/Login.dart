@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:html';
 
-import 'dashboard_admin_panel.dart';
+import 'package:admin_panel/dashboard_admin_panel.dart';
+import 'package:flutter/material.dart';
 
 
 class Login extends StatefulWidget {
@@ -102,7 +103,11 @@ class _LoginState extends State<Login> {
                             Center(
                                 child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoardAdminPanelScreen()));
+                              Navigator.push(context, 
+                              MaterialPageRoute(builder: (context)=> DashBoardAdminPanelScreen()
+                              )
+
+                              );
                               },
                               child: Text('Login',
                                   style: TextStyle(
@@ -121,3 +126,43 @@ class _LoginState extends State<Login> {
   
   }
 }
+
+
+
+
+//  var width = MediaQuery.of(context).size.width;
+//     var height = MediaQuery.of(context).size.height;
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Container(//Main Container
+//         height: height,
+//         width: width,
+      
+//         child: Column(
+      
+//             children: [
+//                           //Search field Starts from here
+//                 Row(
+//                   children: [
+//                     Center(
+//                       child: Padding(
+//                         padding: EdgeInsets.all(8.0),
+//                         child: 
+//                         Container(
+//                               height: height*0.2,
+//                               width: width*0.5,
+//                               child: TextField(),
+//                         ),
+                        
+//                         ),
+//                     ),
+//                   ],
+//                 ),
+      
+//             ],
+      
+//         ),
+      
+//       ),
+//     );
+ 
