@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'dashboard_admin_panel.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -99,7 +101,9 @@ class _LoginState extends State<Login> {
                             ),
                             Center(
                                 child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoardAdminPanelScreen()));
+                              },
                               child: Text('Login',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
