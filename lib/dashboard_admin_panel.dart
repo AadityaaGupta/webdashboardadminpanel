@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'Dashboard_homescreen.dart';
-import 'dashboard_left.dart';
-import 'dashboard_notificationhistory_screen.dart';
-import 'dashboard_sendnotification_screen.dart';
-import 'dashboard_settingsscreen.dart';
-import 'dashboard_usersscreen.dart';
+import 'widget/Dashboard_homescreen.dart';
+import 'widget/dashboard_adminpanel_left.dart';
+import 'widget/dashboard_notificationhistory_screen.dart';
+import 'widget/dashboard_sendnotification_screen.dart';
+import 'widget/dashboard_settingsscreen.dart';
+import 'widget/dashboard_usersscreen.dart';
 
 
 class DashBoardAdminPanelScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class DashBoardAdminPanelScreen extends StatefulWidget {
 
 class _DashBoardAdminPanelScreenState extends State<DashBoardAdminPanelScreen> {
   int indexMain = 0;
-
+ 
   Widget ChangeData(int index) {
     switch (index) {
       case 0:
@@ -47,6 +47,8 @@ class _DashBoardAdminPanelScreenState extends State<DashBoardAdminPanelScreen> {
 
   @override
   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           title: Text("DashBoard Admin Panel"),
@@ -54,7 +56,10 @@ class _DashBoardAdminPanelScreenState extends State<DashBoardAdminPanelScreen> {
         body: Row(
           children: [
             Container(
-              width: 150,
+              decoration: BoxDecoration(
+                border: Border(right: BorderSide(color: Colors.grey))
+              ),
+              width: width*0.2,
               child: DashBoardAdminPanelLeft((index) {
                 ChangeData(indexMain);
                 setState(() {
@@ -62,20 +67,11 @@ class _DashBoardAdminPanelScreenState extends State<DashBoardAdminPanelScreen> {
                 });
               }),
             ),
-            Container(
-              width: 1,
-              color: Colors.black,
-              height: MediaQuery.of(context).size.width,
-            ),
-            Column(
-              children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                  width:  MediaQuery.of(context).size.width - 160,
+                  width:width*.8,
                   child: ChangeData(indexMain),
                 ),
-              ],
-            ),
+              
           ],
         ));
   }

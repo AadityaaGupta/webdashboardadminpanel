@@ -13,7 +13,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
   return Container(
       height: 500,
-      color: Colors.amber,
       child: Text('Home Screen',style: TextStyle(color: Colors.black),),
     );
   }
