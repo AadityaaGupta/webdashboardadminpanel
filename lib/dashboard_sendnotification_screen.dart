@@ -34,11 +34,7 @@ class _SendNotificationScreenState extends State<SendNotificationScreen> {
               children: [
                 Center(
                   child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                      width: 1.0,
-                      color: Colors.red,
-                    )),
+                   
                     height: height * 0.08,
                     width: width * 0.5,
                     // alignment: Alignment.center,
