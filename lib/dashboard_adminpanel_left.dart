@@ -1,13 +1,15 @@
 import 'dart:math';
+import 'package:admin_panel/Login.dart';
+import 'package:admin_panel/utils/appcolor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 class DashBoardAdminPanelLeft extends StatefulWidget {
-  Function(int ) onClick;
+  Function(int) onClick;
   DashBoardAdminPanelLeft(this.onClick);
   @override
-  State<DashBoardAdminPanelLeft> createState() => _DashBoardAdminPanelLeftState();
+  State<DashBoardAdminPanelLeft> createState() =>
+      _DashBoardAdminPanelLeftState();
 }
 
 class DashboardAdminPanelLeft {
@@ -25,42 +27,104 @@ List<DashboardAdminPanelLeft> DashboardAdminPanelLeftList = [
 
 class _DashBoardAdminPanelLeftState extends State<DashBoardAdminPanelLeft> {
   int SelectIndex = 0;
+  int _selectedIndex = 0;
+
+  _onSelected(int index) {
+    setState(() => _selectedIndex = index);
+  }
+
   @override
   Widget build(BuildContext context) {
-     var width = MediaQuery.of(context).size.width;
+
+    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Expanded(
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: DashboardAdminPanelLeftList.length,
-          itemBuilder: (context, index) {
-            return Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: const Color.fromARGB(255, 191, 186, 186))),
-                child: InkResponse(
+        child: Column(
+      children: [
+        SizedBox(
+            child: Column(
+          children: [
+            Container(
+              width: 100, height: 100,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/imgg.jpg"),
+                      fit: BoxFit.cover)),
+              // child: Image.asset(),
+            ),
+            Text(
+              "Flutter",
+              style: TextStyle(
+                  color: AppColor.blue,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            )
+          ],
+        )),
+        SizedBox(
+          height: 30,
+        ),
+        Expanded(
+          child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: DashboardAdminPanelLeftList.length,
+              itemBuilder: (context, index) {
+                return Container(
                     child: Column(
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width,
-                          height: 60,
-                          child: InkWell(
-                            child: Text(DashboardAdminPanelLeftList[index].title,
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18)),
-                            onTap: () {
-                              widget.onClick.call(index);
-                              setState(() {
-                                SelectIndex = index;
-                                print("object");
-                              });
-                            },
+                        InkWell(
+                          child: Container(
+                            width: width*0.2,
+                            height: height*0.1,
+                                                    alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                                color: _selectedIndex != null &&
+                                  _selectedIndex == index
+                              ? AppColor.primaryColor
+                              : AppColor.white,
+                            borderRadius: BorderRadius.circular(15)
                           ),
-                        )
+                            child: Text(
+                                DashboardAdminPanelLeftList[index].title,
+                                style: TextStyle(
+                                  color: _selectedIndex != null &&
+                                  _selectedIndex == index?AppColor.white:AppColor.black,
+                                )),
+                          ),
+                          onTap: () {
+                            widget.onClick.call(index);
+                            setState(() {
+                              SelectIndex = index;
+                              _onSelected(index);
+                              print("object");
+                            });
+                          },
+                        ),SizedBox(height: 10,)
                       ],
-                    ),
-                    onTap: () {}));
-          }),
-    );
+                    ));
+              }),
+        ),
+        InkWell(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.logout,
+                color: AppColor.bordercolor,
+              ),
+              Text(
+                "SignOut",
+                style: TextStyle(color: AppColor.blue, fontSize: 18),
+              )
+            ],
+          ),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Login()));
+          },
+        )
+      ],
+    ));
   }
 }
